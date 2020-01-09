@@ -1,0 +1,439 @@
+@import "components/constants";
+@import "components/colors";
+@import "components/flex";
+@import "components/mixins";
+@import "components/fonts";
+
+*{margin: 0; padding: 0;}
+
+body{
+    background-color: $primary;
+    width: 100%;
+    height: 100%;
+}
+
+.player-up-container{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    background-color: $black;
+    width: 100%;
+    height: 80px;
+    @include flex-row(center, center);
+}
+.container-inner{
+    height: 100%;
+    @include single-section-row;
+    @media screen and (max-width:$sm-width){
+        @include flex-row(center,center);
+    }
+}
+.player{
+    @include flex-row(space-between,center);
+    @media screen and (max-width:$sm-width){
+        @include flex-row(center,center);
+    }
+}
+.player .icon-play{
+    @include flex-row(space-between, center);
+    text-decoration: none;
+    font-size: 3rem;
+    color: $yellow;
+    transition: 0.3s ease;
+    &:hover{
+        color: $white;
+    }
+}
+.player .volumen-slider{
+    width: 100px;
+    height: 3px;
+    background-color: $yellow;
+    -webkit-appearance: none;
+    margin-left: 10px;
+}
+.player .volumen-container{
+    @include flex-row(center, center);
+    height: 100%;
+}
+.player .volumen-container i{
+    color: $yellow;
+    font-size: 1.4rem;
+    margin-left: 20px;
+}
+
+/*El nombre de lo que se esta reproduciendo*/
+.on-play{
+    @include flex-row(center, center);
+    & p{
+        color: $white;
+        font-size: 1rem;        
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+    @media screen and (max-width:$sm-width){
+        display: none;
+    }
+}
+
+/*Icono Online*/
+.online-icon{
+    @include flex-row(center, center);
+    & i, & span{
+        color: $yellow;
+        font-weight: 400;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    & i{
+        margin-right:5px;
+        font-size: 1.2rem;
+    }
+    @media screen and (max-width:$sm-width){
+        display: none;
+    }
+}
+
+/*Menu superior de contacto y logo*/
+.menu-up-container{
+    margin-top: 120px;
+    @include flex-row(center,center);
+}
+.menu-up-container .container-inner ul{
+        width: 100%;
+        @include flex-row(space-between, center);
+        list-style: none;
+        & li a{
+            @include flex-row(center, center);
+            text-decoration: none;
+            color: $white;
+            opacity: 0.7;
+            font-size: 1rem;
+            & i{
+                margin-right: 5px;
+            }
+            &:hover{
+                opacity: 1;
+            }
+        }
+        @media screen and (max-width:$sm-width){
+            display: none;
+        }
+    }
+
+
+/*Menu inferior de navegacion*/
+.menu-container{
+    @include flex-row(center, center);
+    height: 75px;
+    margin-top: 25px;
+    @media screen and (max-width:$sm-width){
+        height: auto;
+    }
+}
+.menu-container .container-inner ul{
+    width: 100%;
+    @include flex-row(center, center);
+    list-style: none;
+    & li{
+        color: $white;
+        width: fit-content;
+        transition: all 0.2s ease;
+        margin: 0 15px;
+        transform: skewY(-2deg);
+        border: 2px solid transparent;
+        &:hover{
+            color: $yellow;
+            border-color: $yellow;
+            & div{
+                transform: skewY(0);
+            }
+        }
+        & div{
+            transform: skewY(2deg);
+            transition: 0.1s ease;
+            text-rendering: optimizeLegibility;
+        }
+        & a{
+            @include flex-row(center,center);
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            padding: 10px 16px;
+            box-sizing: border-box;
+            font-size: 1.2rem;
+            @media screen and (max-width:$sm-width){
+                text-align: center;
+            }
+        }
+        &.menu-active{
+            border-color: $yellow;
+            color: $yellow;
+            & div{
+                transform: skewY(0);
+            }
+        }
+        @media screen and (max-width:$sm-width){
+            margin: 10px 0;
+        }
+    }
+    @media screen and (max-width:$sm-width){
+        @include flex-col(center,center);
+    }
+}
+
+
+/*Primera seccion programas*/
+.program-container{
+    @include flex-col(center, center);
+    & .container-inner{
+        @include flex-col(center, flex-start);
+        margin-top: 75px;
+        padding-bottom: 25px;
+        background-color: $white;
+        transform: skewY(-2deg);
+        & .title{
+            @include title($primary,$white)
+        }
+        & .double-container{
+            
+            @include flex-row(space-evenly,center);
+            padding: 50px;
+            margin-top: 25px;
+            & .item-content{
+                transform: skewY(0deg);
+                width: 45%;
+                & h3{
+                    width: fit-content;
+                    margin-bottom: 25px;
+                    color: $black;
+                }
+
+                & p{
+                    color: $gray;
+                    line-height: 1.8rem;
+                    font-size: 1.1rem;
+                    margin-bottom: 20px;
+                }
+                & a{
+                    @include button($primary);
+                }
+
+                @media screen and (max-width:$sm-width){
+                    width: 100%;
+                    margin-bottom: 50px;
+                }
+            }
+
+            @media screen and (max-width:$sm-width){
+                @include flex-col(center,center)
+            }
+        }
+    }
+}
+
+
+/*DJs Container*/
+.dj-container{
+    @include flex-col(center, center);
+    & .container-inner{
+        @include flex-col(center, flex-start);
+        transform: skewY(-2deg);
+        background: $black;
+        & .title{
+            @include title($yellow, $black)
+        }
+        & .triple-container{
+            margin: 50px 0;
+            width: 100%;
+            @include flex-row(space-evenly, center);
+            flex-wrap: wrap;
+            & .dj-content{
+                @include flex-row(flex-start, center);
+                
+                box-sizing: border-box;
+                padding: 15px;
+                width: 325px;
+                margin: 25px 15px;
+                position: relative;
+                & .dj-img{
+                    width: 75px;
+                    height: 75px;
+                    background-image: url(../img/dj1.jpg);
+                    background-position: top center;
+                    background-size: cover;
+                    margin-right: 20px;
+                }
+                & .dj-info{
+                    @include flex-col(flex-start, center);
+                    box-sizing: border-box;
+                    color: $white;
+                    cursor: default;
+                    & h4{
+                        font-size: 1.4rem;
+                        color: $white;
+                    }
+                    & span{
+                        font-size: 1.1rem;
+                        font-weight: 300;
+                        margin: 3px 0;
+                        opacity: 0.6;
+                        &.dj-calendar{
+                            color: $white;
+                            font-size: 0.9rem;
+                        }
+                    }
+                    & .dj-social{
+                        width: 100%;
+                        @include flex-row(flex-start, center);
+                        margin-top: 10px;
+                        & a{
+                            color: $white;
+                            text-decoration: none;
+                            margin-right: 10px;
+                            font-size: 1.5rem;
+                            opacity: 0.3;
+                            &:hover{
+                                opacity: 1;
+                                color: $yellow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.social-media-container{
+    @include flex-col(center,center);
+    & .container-inner{
+        @include flex-col(center,flex-start);
+        background: $primary;
+        transform: skewY(-2deg);
+        padding-bottom: 50px;
+        & .title{
+            @include title($white, $black);
+            margin-bottom: 50px;
+        }
+        & .social-item-container{
+            @include flex-row(space-evenly, center);
+            flex-wrap: wrap;
+            & .social-media-item{
+                @include flex-col(center, flex-start);
+                width: 200px;
+                margin: 0 20px;
+                text-decoration: none;
+                color: $white;
+                padding: 25px 0;
+                border: 2px solid transparent;
+                transition: 0.3s ease;
+                & i{
+                    font-size: 4rem;
+                    color: $yellow
+                }
+                & span{
+                    margin-top: 15px;
+                    margin-bottom: 5px;
+                    font-weight: 400;
+                    font-size: 0.9rem;
+                }
+                & h4{
+                    font-size: 1.5rem;
+                    letter-spacing: 1px;
+                }
+                &:hover{
+                    border: 2px solid $yellow;
+                }
+            }
+        }
+    }
+}
+
+
+.footer-container{
+    margin-top: 25px;
+    @include flex-col(center,center);
+    & .up-element{
+        width: 100%;
+        transform: skewY(-2deg);
+        max-width: $max-width;
+        height: 50px;
+        background:$black;
+    }
+    & .container-inner{
+        margin-top: -25px;
+        @include flex-col(center,flex-start);
+        transform: skewY(0deg);
+        width: 100%;
+        background: $black;
+        & h1{
+            margin-top: 75px;
+            color: $white;
+        }
+        & ul{
+            width: 100%;
+            @include flex-row(center, center);
+            list-style: none;
+            margin-top: 50px;
+            & li{
+                color: $white;
+                width: fit-content;
+                transition: all 0.2s ease;
+                margin: 0 10px;
+                transform: skewY(-2deg);
+                border: 2px solid transparent;
+                &:hover{
+                    color: $yellow;
+                    border-color: $yellow;
+                    & div{
+                        transform: skewY(0);
+                    }
+                }
+                & div{
+                    transform: skewY(2deg);
+                    transition: 0.1s ease;
+                    text-rendering: optimizeLegibility;
+                }
+                & a{
+                    @include flex-row(center,center);
+                    position: relative;
+                    text-decoration: none;
+                    color: inherit;
+                    padding: 10px 16px;
+                    box-sizing: border-box;
+                    font-size: 1.1rem;
+                    @media screen and (max-width:$sm-width){
+                        @include flex-col(center,center)
+                    }
+                }
+                &.menu-active{
+                    border-color: $yellow;
+                    color: $yellow;
+                    & div{
+                        transform: skewY(0);
+                    }
+                }
+                @media screen and (max-width:$sm-width){
+                    margin: 10px 0;
+                }
+            }
+            @media screen and (max-width:$sm-width){
+                @include flex-col(center,center);
+            }
+            
+        }
+
+        & span{
+            margin-top: 40px;
+            font-size: 1rem;
+            font-weight: 300;
+            color: $white;
+            opacity: 0.3;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        @media screen and (max-width:$sm-width){
+            @include flex-col(center,center)
+        }
+    }
+}
