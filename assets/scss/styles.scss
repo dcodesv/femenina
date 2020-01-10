@@ -21,6 +21,30 @@ body{
     height: 80px;
     @include flex-row(center, center);
 }
+
+.audiojs{
+    height: 60px;
+    width: 100px;
+    @include flex-row(flex-start,center);
+    border: none;
+    transition: 0.3s ease;
+    & .play-pause{
+        @include flex-row(center,center);
+        border: none;
+        border-radius: 100%;
+        height: 45px;
+        width: 45px;
+        padding: 0;
+        transition: 0.3s ease;
+        & .play{
+            width: 100%;
+            height: 100%;
+            transition: 0.3s ease;
+        }
+    }
+}
+
+
 .container-inner{
     height: 100%;
     @include single-section-row;
